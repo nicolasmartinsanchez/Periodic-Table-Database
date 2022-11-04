@@ -13,3 +13,8 @@ else
   ELEMENT_SYMBOL=$($PSQL "select symbol from elements where symbol='$1' or name='$1'")
   ELEMENT_NAME=$($PSQL "select name from elements where symbol='$1' or name='$1'")
 fi
+
+if [[ -z $ELEMENT_ATOMIC_NUMBER && -z $ELEMENT_SYMBOL && -z $ELEMENT_NAME ]]
+then
+  echo I could not find that element in the database.
+fi
