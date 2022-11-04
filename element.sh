@@ -21,7 +21,7 @@ else
   then
     echo I could not find that element in the database.
   else
-    ELEMENT_TYPE=$($PSQL "select type from properties where atomic_number=$ELEMENT_ATOMIC_NUMBER")
+    ELEMENT_TYPE=$($PSQL "select type from types right join properties using(type_id) where atomic_number=$ELEMENT_ATOMIC_NUMBER")
     ELEMENT_ATOMIC_MASS=$($PSQL "select atomic_mass from properties where atomic_number=$ELEMENT_ATOMIC_NUMBER")
     ELEMENT_MENTING=$($PSQL "select melting_point_celsius from properties where atomic_number=$ELEMENT_ATOMIC_NUMBER")
     ELEMENT_BOILING=$($PSQL "select boiling_point_celsius from properties where atomic_number=$ELEMENT_ATOMIC_NUMBER")
